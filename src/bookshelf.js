@@ -2,21 +2,23 @@ import React, { Component } from 'react'
 import Book from './book'
 
 class BookShelf extends Component {
-    // state = {
-    //     books: [],
-    //     type: ""
-    // }
-    // componentDidMount() {
-    //     this.setState(() => ({
-    //         books: this.props.books,
-    //         type: this.props.type
-    //     }))
-    // }
+    shelfTitle(type){
+        switch (type) {
+            case "wantToRead":
+                return "Want To Read"
+            case "currentlyReading":
+                return "Currently Reading"
+            case "read":
+                return "Read"
+            default:
+                break;
+        }
+    }
     render() {
         return(
             <div className="bookshelf">
              {/* TODO: dinamic titles */}
-                <h2 className="bookshelf-title">Currently Reading</h2> 
+                <h2 className="bookshelf-title">{this.shelfTitle(this.props.type)}</h2> 
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {this.props.books.filter((book) => (

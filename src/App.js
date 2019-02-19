@@ -34,7 +34,6 @@ class BooksApp extends React.Component {
           loaded: true
         }))
         console.log('books', this.state.books)
-        console.log('loaded', this.state.loaded)
       })
   }
   render() {
@@ -54,7 +53,15 @@ class BooksApp extends React.Component {
                       books={this.state.books}
                       type="currentlyReading"
                     />
-                  </div>
+                    <BookShelf 
+                      books={this.state.books}
+                      type="wantToRead"
+                    />
+                    <BookShelf 
+                      books={this.state.books}
+                      type="read"
+                    />
+                </div>
               </Loader>
             </div>
             <div className="open-search">
