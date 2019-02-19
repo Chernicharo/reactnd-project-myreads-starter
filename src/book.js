@@ -3,7 +3,7 @@ import BookOption from './bookoption';
 
 class Book extends Component {
     state = {
-        // img: this.props.imageLinks.smallThumbnail,
+        img: this.props.book.imageLinks.smallThumbnail,
         title: "" ,
         author: ""
     }
@@ -16,7 +16,7 @@ class Book extends Component {
                         style={{ 
                             width: 128,
                             height: 193,
-                            backgroundImage: `url({this.state.img})` 
+                            backgroundImage: `url(${this.state.img})` 
                         }}
                     ></div>
                     <div className="book-shelf-changer">
@@ -25,7 +25,7 @@ class Book extends Component {
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
                 {this.props.book.authors.map((author) => (
-                    <div className="book-authors">{author}</div>
+                    <div key={this.props.book.id + author} className="book-authors">{author}</div>
                 ))}
                 
             </div>

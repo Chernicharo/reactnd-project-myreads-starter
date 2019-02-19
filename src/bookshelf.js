@@ -23,9 +23,10 @@ class BookShelf extends Component {
                             book.shelf === this.props.type
                         )).map((book)=> (
                             <li
-                                key="book.id"
+                                key={book.id}
                             >
                                 <Book book={book} />
+                                {console.log('monted book', book)}
                             </li>
                         ))}
                     </ol>
