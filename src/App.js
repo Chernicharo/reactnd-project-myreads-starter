@@ -3,9 +3,18 @@ import React from 'react'
 import './App.css'
 import Search from './search'
 import BookShelf from './bookshelf'
+import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
   state = {
+    books: [
+      {
+        id:'s3HtCgAAQBAJ',
+        title: 'The Hatred of Poetry',
+        authors: ['Ben Lerner'],
+        thumbnail: 'http://books.google.com/books/content?id=s3HtCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+      }
+    ],
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -14,7 +23,19 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
+  componentDidMount() {
+    const query = 's3HtCgAAQBAJ';
+    const bookId = 's3HtCgAAQBAJ';
+    const shelf = 'read';
 
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+        console.log('books', this.state.books)
+      })
+  }
   render() {
     return (
       <div className="app">
@@ -27,7 +48,10 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf />
+                <BookShelf 
+                  books={this.state.books}
+                  type="currentlyReading"
+                />
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
