@@ -25,9 +25,17 @@ class BooksApp extends React.Component {
   }
   updateShelf = (bookID,shelf) => {
     BooksAPI.update(bookID,shelf)
-      .then((data) => (
-        console.log('update data', data)
-      ))
+      // .then((books) => {
+      //   this.setState(() => ({
+      //     loaded: false ,
+      //     books
+      //   }))
+      // })
+      // .then((books) => {
+      //   this.setState(() => ({
+      //     loaded: true
+      //   }))
+      // })
   }
   componentDidMount() {
 
@@ -53,21 +61,24 @@ class BooksApp extends React.Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <button onClick={this.updateShelf( this.state.idTest,'currentlyReading')}>update test</button>
+              {/* <button onClick={() => this.updateShelf( this.state.idTest,'currentlyReading')}>update test</button> */}
               <div className="list-books-content">
                 <Loader loaded={this.state.loaded}>
                   <div>
                       <BookShelf 
                         books={this.state.books}
                         type="currentlyReading"
+                        updateShelf={this.updateShelf}
                       />
                       <BookShelf 
                         books={this.state.books}
                         type="wantToRead"
+                        updateShelf={this.updateShelf}
                       />
                       <BookShelf 
                         books={this.state.books}
                         type="read"
+                        updateShelf={this.updateShelf}
                       />
                   </div>
                 </Loader>
