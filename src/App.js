@@ -4,7 +4,9 @@ import './App.css'
 import Search from './search'
 import BookShelf from './bookshelf'
 import Loader  from 'react-loader'
+import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+
 
 class BooksApp extends React.Component {
   state = {
@@ -36,39 +38,47 @@ class BooksApp extends React.Component {
         console.log('books', this.state.books)
       })
   }
+  updateShelf() {
+
+  }
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Search />
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
+          <Route path='/search' render={() => (
+            <Search />
+          )}/>
+          <Route exact path='/' render={() => (
+            <div className="list-books">
+              <div className="list-books-title">
+                <h1>MyReads</h1>
+              </div>
+              <div className="list-books-content">
+                <Loader loaded={this.state.loaded}>
+                  <div>
+                      <BookShelf 
+                        books={this.state.books}
+                        type="currentlyReading"
+                      />
+                      <BookShelf 
+                        books={this.state.books}
+                        type="wantToRead"
+                      />
+                      <BookShelf 
+                        books={this.state.books}
+                        type="read"
+                      />
+                  </div>
+                </Loader>
+              </div>
+              <div className="open-search">
+                <Link
+                  to="/search" 
+                >
+                  <button >Add a book</button>
+                </Link>
+              </div>
             </div>
-            <div className="list-books-content">
-              <Loader loaded={this.state.loaded}>
-                <div>
-                    <BookShelf 
-                      books={this.state.books}
-                      type="currentlyReading"
-                    />
-                    <BookShelf 
-                      books={this.state.books}
-                      type="wantToRead"
-                    />
-                    <BookShelf 
-                      books={this.state.books}
-                      type="read"
-                    />
-                </div>
-              </Loader>
-            </div>
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-            </div>
-          </div>
-        )}
+          )}/>
       </div>
     )
   }

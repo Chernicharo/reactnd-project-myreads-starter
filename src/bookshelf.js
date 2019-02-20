@@ -28,7 +28,6 @@ class BookShelf extends Component {
                                 key={book.id}
                             >
                                 <Book book={book} />
-                                {console.log('monted book', book)}
                             </li>
                         ))}
                     </ol>
