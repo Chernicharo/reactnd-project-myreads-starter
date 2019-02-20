@@ -6,12 +6,8 @@ class Search extends Component {
         return(
             <div className="search-books">
                 <div className="search-books-bar">
-                    {/**
-                    * TODO: change to 'react-router-dom' navigation 
-                    */}
                 <Link
-                  to="/" 
-                >
+                  to="/">
                     <button className="close-search">Close</button>
                 </Link>
                 <div className="search-books-input-wrapper">
